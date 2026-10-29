@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { ScrollScrub } from "./components/scroll-scrub/scroll-scrub";
 import { EnquiryForm } from "./components/rocket/enquiry-form";
 import { ServiceIcon } from "./components/rocket/icons";
@@ -28,9 +29,26 @@ const journey = scrollScrubScenes.map((scene, index, all) =>
 );
 
 export default function App() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const closeMenu = () => setMenuOpen(false);
+
   return (
     <div className="rk" id="top">
       <RocketMotion />
+
+      {/* Mobile navigation drawer */}
+      <nav
+        className={`rk-mobile-nav${menuOpen ? " rk-mobile-nav--open" : ""}`}
+        aria-label="Mobile navigation"
+        aria-hidden={!menuOpen}
+      >
+        <a href="#services" onClick={closeMenu}>Services</a>
+        <a href="#treatments" onClick={closeMenu}>Treatments</a>
+        <a href="#branches" onClick={closeMenu}>Branches</a>
+        <a href="#franchise" onClick={closeMenu}>Franchise</a>
+        <a className="rk-mobile-nav__cta" href="#book" onClick={closeMenu}>Book a wash</a>
+      </nav>
 
       <header className="rk-header">
         <div className="rk-header__bar rk-glass rk-glass--refract">
@@ -46,6 +64,27 @@ export default function App() {
             </ul>
           </nav>
           <a className="rk-header__cta" href="#book">Book a wash</a>
+          <button
+            className="rk-menu-btn"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            aria-controls="rk-mobile-nav"
+            onClick={() => setMenuOpen((o) => !o)}
+            type="button"
+          >
+            {menuOpen ? (
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <line x1="4" y1="4" x2="16" y2="16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                <line x1="16" y1="4" x2="4" y2="16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+              </svg>
+            ) : (
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <line x1="3" y1="6" x2="17" y2="6" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                <line x1="3" y1="10" x2="17" y2="10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                <line x1="3" y1="14" x2="17" y2="14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+              </svg>
+            )}
+          </button>
         </div>
       </header>
 
@@ -96,7 +135,7 @@ export default function App() {
           <div className="rk-treat__rail" data-lenis-prevent="">
             {treatments.map((t) => (
               <figure className="rk-treat" key={t.name}>
-                <img src={t.img} alt={t.name} width={896} height={1152} loading="lazy" />
+                <img src={t.img} alt={t.name} width={896} height={1152} loading="lazy" decoding="async" />
                 <figcaption className="rk-glass">
                   <b>{t.name}</b>
                   <span>{t.line}</span>
@@ -129,7 +168,7 @@ export default function App() {
             </div>
           </div>
           <div className="rk-proof__media" data-rk-reveal="">
-            <img src="/assets/rocket/bay.webp" alt="Inside a Rocket Car Wash bay with its red light stripe" width={1800} height={1201} loading="lazy" />
+            <img src="/assets/rocket/bay.webp" alt="Inside a Rocket Car Wash bay with its red light stripe" width={1800} height={1201} loading="lazy" decoding="async" />
           </div>
         </section>
 
@@ -156,7 +195,7 @@ export default function App() {
 
         <section className="rk-section rk-franchise" id="franchise" aria-labelledby="franchise-title">
           <div className="rk-franchise__media">
-            <img src="/assets/rocket/branch.webp" alt="A Rocket Car Wash branch frontage" width={1800} height={1201} loading="lazy" />
+            <img src="/assets/rocket/branch.webp" alt="A Rocket Car Wash branch frontage" width={1800} height={1201} loading="lazy" decoding="async" />
             <p className="rk-glass">Every Rocket branch opens with the same bay design, equipment and crew training.</p>
           </div>
           <div>
@@ -173,11 +212,11 @@ export default function App() {
             </ul>
             <div className="rk-leaders">
               <div className="rk-leader">
-                <img src="/assets/rocket/john.webp" alt="Mr. John" width={803} height={1200} loading="lazy" />
+                <img src="/assets/rocket/john.webp" alt="Mr. John" width={803} height={1200} loading="lazy" decoding="async" />
                 <div><b>Mr. John</b><span>Managing Director, a business analyst and car lover who leads day-to-day quality.</span></div>
               </div>
               <div className="rk-leader">
-                <img src="/assets/rocket/clayton.webp" alt="Mr. Clayton" width={622} height={792} loading="lazy" />
+                <img src="/assets/rocket/clayton.webp" alt="Mr. Clayton" width={622} height={792} loading="lazy" decoding="async" />
                 <div><b>Mr. Clayton</b><span>Managing Director, Pro Rocket Car Wash Pvt Ltd, with ventures across detailing and car care equipment.</span></div>
               </div>
             </div>
@@ -187,7 +226,7 @@ export default function App() {
 
         <section className="rk-section rk-book" id="book" aria-labelledby="book-title">
           <div className="rk-book__bg" aria-hidden="true">
-            <img src="/assets/rocket/gantry.webp" alt="" width={1800} height={1201} loading="lazy" />
+            <img src="/assets/rocket/gantry.webp" alt="" width={1800} height={1201} loading="lazy" decoding="async" />
           </div>
           <div>
             <p className="rk-eyebrow">Book</p>
@@ -205,7 +244,7 @@ export default function App() {
 
       <footer className="rk-footer">
         <div>
-          <img src="/assets/rocket/logo.png" alt="Rocket Car Wash" width={274} height={123} />
+          <img src="/assets/rocket/logo.png" alt="Rocket Car Wash" width={274} height={123} loading="lazy" />
           <p>Pro Rocket Car Wash Pvt Ltd. Branches in Coimbatore, Namakkal, Chennai and Andhra Pradesh. Website concept by Magdio.</p>
         </div>
         <div className="rk-footer__social">

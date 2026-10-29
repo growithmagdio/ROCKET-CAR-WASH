@@ -3,14 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#08090B" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <title>Rocket Car Wash | Landing in Luxury</title>
     <meta name="description" content="Premium car wash, coating and detailing at Rocket Car Wash branches in Coimbatore, Namakkal, Chennai and Andhra Pradesh." />
     <meta property="og:title" content="Rocket Car Wash" />
     <meta property="og:image" content="/assets/rocket/og.jpg" />
     <link rel="icon" href="/assets/rocket/favicon.png" />
+    <!-- Preconnect for fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira:ital,wdth,wght@0,75..125,300..800;1,75..125,600..800&family=Figtree:wght@400;500;600&display=swap" />
+    <!-- Preload hero poster (LCP image) -->
+    <link rel="preload" as="image" href="/assets/world/scene-01-poster.png" fetchpriority="high" media="(min-width: 861px)" />
+    <link rel="preload" as="image" href="/assets/world/scene-01-mobile-poster.png" fetchpriority="high" media="(max-width: 860px)" />
+    <!-- Font stylesheet (non-render-blocking via print trick) -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira:ital,wdth,wght@0,75..125,300..800;1,75..125,600..800&family=Figtree:wght@400;500;600&display=swap" media="print" onload="this.media='all'" />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira:ital,wdth,wght@0,75..125,300..800;1,75..125,600..800&family=Figtree:wght@400;500;600&display=swap" />
+    </noscript>
   </head>
   <body>
     <div id="root"></div>
