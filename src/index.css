@@ -1,0 +1,4 @@
+*, *::before, *::after { box-sizing: border-box; }
+html { background: #08090B; color-scheme: dark; }
+body { margin: 0; background: #08090B; -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; }
